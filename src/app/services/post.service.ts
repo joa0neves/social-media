@@ -19,18 +19,18 @@ export class PostService {
     );
   };
 
-  getNextPost(id:string){
-    return this.http.post<string>('localhost/user/new',{id}).pipe(
+  getNextPost(id:string):Observable<Post>{
+    return this.http.post<string>('localhost/',{id}).pipe(
       map((res:string)=>{
-        return res;
+        return JSON.parse(res);
       })
     );
   };
 
   getPreviousPost(id:string){
-    return this.http.post<string>('localhost/user/new',{id}).pipe(
+    return this.http.post<string>('localhost/',{id}).pipe(
       map((res:string)=>{
-        return res;
+        return JSON.parse(res);
       })
     );
   };

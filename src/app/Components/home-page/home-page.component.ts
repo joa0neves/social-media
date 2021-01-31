@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { PostService } from 'src/app/services/post.service';
 import { Post } from '../../models/post';
 
 
@@ -19,9 +21,19 @@ export class HomePageComponent implements OnInit {
   };
 
 
-  constructor(private router: Router,private authenticateService:AuthenticateService) { }
+  constructor(private router: Router,private authenticateService:AuthenticateService,private postService:PostService) { }
 
   ngOnInit(): void {
+    this.postService.getNextPost(this.currentPost.id)
+    .pipe(take(1))
+    .subscribe(
+        (data) => {
+          this.currentPost=data;
+          console.log("Post added");
+        },
+        (error) => {
+          console.log('post get failed');
+        });
   }
 
   logout():void{
@@ -29,11 +41,29 @@ export class HomePageComponent implements OnInit {
   }
 
   next():void{
-
+    this.postService.getNextPost(this.currentPost.id)
+    .pipe(take(1))
+    .subscribe(
+        (data) => {
+          this.currentPost=data;
+          console.log("Post added");
+        },
+        (error) => {
+          console.log('post get failed');
+        });
   }
 
   previous():void {
-
+    this.postService.getPreviousPost(this.currentPost.id)
+    .pipe(take(1))
+    .subscribe(
+        (data) => {
+          this.currentPost=data;
+          console.log("Post added");
+        },
+        (error) => {
+          console.log('post get failed');
+        });
   }
 
   like():void{
@@ -44,5 +74,14 @@ export class HomePageComponent implements OnInit {
       this.currentPost.likes.splice(this.currentPost.likes.indexOf(this.currentPost.author),1);
     }
     //TODO atualizar os likes no backend
+    this.postService.updateLikes(this.currentPost.id,this.currentPost.likes)
+        .pipe(take(1))
+        .subscribe(
+            (data) => {
+              console.log("like array updated")
+            },
+            (error) => {
+              console.log('update failed');
+            });
   }
 }
