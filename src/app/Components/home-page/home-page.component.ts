@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { Post } from '../../models/post';
 
 
@@ -18,9 +19,13 @@ export class HomePageComponent implements OnInit {
   };
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private authenticateService:AuthenticateService) { }
 
   ngOnInit(): void {
+  }
+
+  logout():void{
+    localStorage.clear();
   }
 
   next():void{

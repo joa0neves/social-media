@@ -1,5 +1,6 @@
-<a routerLink="/private/profile" class="btn btn-link" style="margin-right:200px;">Profile</a>
-<a routerLink="/login" class="btn btn-link" onclick="">Logout</a>
+<a routerLink="/private/profile" class="btn btn-link">Profile</a>
+<a routerLink="/private/newpost" class="btn btn-link" style="margin-right:100px; margin-left:100px;">New Post</a>
+<a routerLink="/login" class="btn btn-link" (click)='logout()'>Logout</a>
 <div>
   <div>
     <h2>{{currentPost.title}}</h2>
@@ -7,8 +8,8 @@
     <h2>by {{currentPost.author}}</h2>
   </div>
   <div>
-    <button onclick='previous()'>Previous</button>
+    <button (click)='previous()'>Previous</button>
     <button (click)='like()'>Like -> {{currentPost.likes.length}}</button>
-    <button onclick='next()'>Next</button>
+    <button (click)='next()'>Next</button>
   </div>
 </div>
