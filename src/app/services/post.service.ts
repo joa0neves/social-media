@@ -17,12 +17,20 @@ export class PostService {
     );
   };
 
-  getNextPost(){
-
+  getNextPost(id:string){
+    return this.http.post<string>('localhost/user/new',{id}).pipe(
+      map((res:string)=>{
+        return res;
+      })
+    );
   };
 
-  getPreviousPost(){
-
+  getPreviousPost(id:string){
+    return this.http.post<string>('localhost/user/new',{id}).pipe(
+      map((res:string)=>{
+        return res;
+      })
+    );
   };
 
 }
