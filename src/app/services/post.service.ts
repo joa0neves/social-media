@@ -33,7 +33,11 @@ export class PostService {
     );
   };
 
-  updateLikes(id:string){
+  updateLikes(id:string,likes: Array<string>){
+
+  }
+
+  getAllPosts(){
 
   }
 

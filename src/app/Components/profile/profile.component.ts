@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import {posts} from '../../models/post';
 
 @Component({
   selector: 'app-profile',
@@ -10,9 +11,15 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 export class ProfileComponent implements OnInit {
   readonly User = this.authenticateService.sessionUser;
 
+  posts=posts;
+
   constructor(private authenticateService:AuthenticateService,private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  delete(id:string):void {
+
   }
 
 }
