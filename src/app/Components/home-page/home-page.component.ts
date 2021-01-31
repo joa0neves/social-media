@@ -12,5 +12,11 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //onClick()
+  next():void{
+
+  }
+
+  previous():void {
+
+  }
 }

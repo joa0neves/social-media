@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 
 @Component({
@@ -10,7 +11,8 @@ export class PostComponent implements OnInit {
   readonly User = this.authenticateService.sessionUser;
   show:boolean = false;
 
-  constructor(private authenticateService:AuthenticateService) {
+
+  constructor(private authenticateService:AuthenticateService,private router: Router) {
    }
 
   ngOnInit(): void {

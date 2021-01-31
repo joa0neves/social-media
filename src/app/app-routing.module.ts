@@ -20,7 +20,7 @@ const routes: Routes = [ {
     component: ProfileComponent,
   },{
     path: '**',
-    redirectTo: 'private/login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },];
 
