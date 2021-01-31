@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
               //navigate to private homepage
               this.router.navigate(['private/home']);
             },
-            () => {
+            (error) => {
               console.log('login failed');
             });
   }

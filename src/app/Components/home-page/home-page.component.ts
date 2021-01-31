@@ -10,6 +10,7 @@ import { Post } from '../../models/post';
 })
 export class HomePageComponent implements OnInit {
   currentPost: Post = {
+    id: 'test',
     author: 'test',
     title: 'test',
     photoUrl: 'https://i.imgur.com/ixlPReX.png',
@@ -31,6 +32,7 @@ export class HomePageComponent implements OnInit {
   }
 
   like():void{
+    const currentUser = localStorage.getItem('sessionUser');
     if(!this.currentPost.likes.includes(this.currentPost.author)){
       this.currentPost.likes.push(this.currentPost.author);
     }else{

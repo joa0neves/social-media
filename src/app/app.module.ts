@@ -9,6 +9,7 @@ import { RegisterComponent } from './Components/register/register.component';
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { NewPostComponent } from './Components/new-post/new-post.component';
 
 
 
@@ -19,7 +20,8 @@ import { ProfileComponent } from './Components/profile/profile.component';
     LoginComponent,
     RegisterComponent,
     HomePageComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,

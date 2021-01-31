@@ -40,10 +40,11 @@ export class RegisterComponent implements OnInit {
     this.registerService.register(this.f.email.value, this.f.password.value, this.f.firstname.value, this.f.lastname.value)
             .pipe(take(1))
             .subscribe(
-              () =>{
+              (data) =>{
+
                 this.router.navigate(['login']);
               },
-              () =>{
+              (error) =>{
                 console.log('register failed')
               });
 
