@@ -33,4 +33,8 @@ export class PostService {
     );
   };
 
+  updateLikes(id:string){
+
+  }
+
 }
