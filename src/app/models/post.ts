@@ -7,25 +7,25 @@ export interface Post {
 };
 export const posts:Post[] = [
   {
-  id: 'test',
+  id: 'test0',
   author: 'test',
   title: 'test',
   photoUrl: 'https://i.imgur.com/ixlPReX.png',
   likes: []
 },{
-  id: 'test',
+  id: 'test1',
   author: 'test',
   title: 'test',
   photoUrl: 'https://i.imgur.com/ixlPReX.png',
   likes: []
 },{
-  id: 'test',
+  id: 'test2',
   author: 'test',
   title: 'test',
   photoUrl: 'https://i.imgur.com/ixlPReX.png',
   likes: []
 },{
-  id: 'test',
+  id: 'test3',
   author: 'test',
   title: 'test',
   photoUrl: 'https://i.imgur.com/ixlPReX.png',

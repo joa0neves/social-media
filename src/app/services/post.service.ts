@@ -35,8 +35,20 @@ export class PostService {
     );
   };
 
-  updateLikes(id:string,likes: Array<string>){
+  deletePost(id:string){
+    return this.http.post<string>('localhost/',{id}).pipe(
+      map((res:string)=>{
+        return res;
+      })
+    );
+  }
 
+  updateLikes(id:string,likes: Array<string>){
+    return this.http.post<string>('localhost/',{id,likes}).pipe(
+      map((res:string)=>{
+        return res;
+      })
+    );
   }
 
   getAllPosts():Observable<Array<Post>>{

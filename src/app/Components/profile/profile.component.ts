@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   constructor(private postService:PostService,private authenticateService:AuthenticateService,private router: Router) { }
 
   ngOnInit(): void {
-    this.posts=this.getPosts();
+    //vv--remove comment when testing backend--vv
     /*this.postService.getAllPosts()
         .pipe(take(1))
         .subscribe(
@@ -30,11 +30,21 @@ export class ProfileComponent implements OnInit {
             });*/
   }
 
-  delete(id:string):void {
-
+  delete(post:Post):void {
+    this.postService.deletePost(post.id)
+        .pipe(take(1))
+        .subscribe(
+            (data) => {
+              posts.splice(posts.indexOf(post),1);
+              console.log("Post deleted")
+            },
+            (error) => {
+              //posts.splice(posts.indexOf(post),1);
+              console.log('post removal failed');
+            });
   }
 
-  getPosts():Array<Post>{
+  /*getPosts():Array<Post>{
     return  [
       {
       id: 'test',
@@ -43,6 +53,6 @@ export class ProfileComponent implements OnInit {
       photoUrl: 'https://i.imgur.com/ixlPReX.png',
       likes: []
     }];
-  }
+  }*/
 
 }
