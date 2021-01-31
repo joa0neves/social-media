@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts=this.getPosts();
-    this.postService.getAllPosts()
+    /*this.postService.getAllPosts()
         .pipe(take(1))
         .subscribe(
             (data) => {
@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
             },
             (error) => {
               console.log('loading posts failed');
-            });
+            });*/
   }
 
   delete(id:string):void {
