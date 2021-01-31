@@ -34,6 +34,14 @@ export class AuthenticateService {
       );
   }
 
+  register(email: string, password: string,firstname:string,lastname:string):Observable<string> {
+    return this.http.post<string>('localhost/user/new',{email,password,firstname,lastname}).pipe(
+      map((res:string)=>{
+        return res;
+      })
+    );
+  }
+
   updateLocalStorage(user: User): void {
     localStorage.setItem('sessionUser', JSON.stringify(user));
     this.sessionUserSubject.next(user);
