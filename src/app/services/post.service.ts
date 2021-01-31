@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {Post} from '../models/post';
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +39,12 @@ export class PostService {
 
   }
 
-  getAllPosts(){
-
+  getAllPosts():Observable<Array<Post>>{
+    return this.http.get<string>('localhost/',{}).pipe(
+      map((res:string)=>{
+        return JSON.parse(res);
+      })
+    );
   }
 
 }

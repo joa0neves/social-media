@@ -5,7 +5,7 @@ export interface Post {
   photoUrl: string;
   likes: Array<string>;
 };
-export const posts = [
+export const posts:Post[] = [
   {
   id: 'test',
   author: 'test',
