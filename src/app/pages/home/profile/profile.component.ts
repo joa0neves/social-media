@@ -23,16 +23,16 @@ export class ProfileComponent implements OnInit {
 
 	ngOnInit(): void {
 		console.log(this.userService.currentUser);
-		// vv--remove comment when testing backend--vv
-		/*this.postService.getAllPosts()
-			.pipe(take(1))
+		this.postService.getAllPosts()
 			.subscribe(
 				(data) => {
-				  this.posts=data;
+          if (data.length>0){
+            this.posts=data;
+          }
 				},
 				(error) => {
 				  console.log('loading posts failed');
-				});*/
+				});
 	}
 
 	delete(post: Post): void {

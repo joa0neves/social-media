@@ -51,7 +51,7 @@ export class PostService {
 	}
 
 	getAllPosts(): Observable<Array<Post>> {
-		return this.http.get<string>('http://localhost/', {}).pipe(
+		return this.http.get<string>('http://localhost/user/me/posts', {}).pipe(
 			map((res: string) => {
 				return JSON.parse(res);
 			})
