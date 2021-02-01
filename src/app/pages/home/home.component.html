@@ -1,2 +1,18 @@
-<h1>MENU</h1>
-<router-outlet></router-outlet>
+<div class="container">
+	<mat-toolbar color="primary">
+		<span>Desocial</span>
+		<span class="example-spacer"></span>
+		<span>{{ user.firstname }} {{ user.lastname }}</span>
+		<button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu">
+			<mat-icon>person</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item>Profile</button>
+			<button mat-menu-item>Settings</button>
+			<button mat-menu-item>Logout</button>
+		</mat-menu>
+	</mat-toolbar>
+	<div class="app-container">
+		<router-outlet></router-outlet>
+	</div>
+</div>
