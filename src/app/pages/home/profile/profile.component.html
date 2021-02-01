@@ -1,12 +1,16 @@
-<!-- <a routerLink="/private/homepage" class="btn btn-link">Homepage</a>
-<div>
-	<h2>Nome: {{User?.firstname}}{{User?.lastname}}</h2>
-	<h2>Email: {{User?.email}}</h2>
-	<h3>Posts :</h3>
+ <div class="center-me">
 	<div *ngFor="let post of posts">
-		<img src={{post.photoUrl}} alt={{post.title}} width="300">
-		<h2>{{post.title}}</h2>
-		<h2>Likes : {{post.likes.length}}</h2>
-		<button (click)='delete(post)'>Delete</button>
+    <img src={{post.photoUrl}} alt={{post.title}} width="300">
+    <div style="display: flex" >
+      <h2 style="margin-top: 12px;">{{post.title}}</h2>
+      <mat-divider [vertical]="true" style="padding-right: 5px; padding-left: 5px;"></mat-divider>
+      <h2 style="color: #F44336; margin-top: 12px; padding-left:5px">{{post.likes.length}}</h2>
+      <span class="material-icons" style="color: #F44336; margin-top: 16px; padding-left: 5px">favorite</span>
+      <mat-divider [vertical]="true" style="padding-right: 5px; padding-left: 5px;"></mat-divider>
+      <button (click)='delete(post)' mat-fab color="disabled" aria-label="Delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <mat-divider [inset]="true" style="margin-top: 12px; margin-bottom: 12px;" ></mat-divider>
 	</div>
-</div> -->
+</div>

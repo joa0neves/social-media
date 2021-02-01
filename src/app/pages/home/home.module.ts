@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
 	imports: [
@@ -26,13 +28,15 @@ import { MatMenuModule } from '@angular/material/menu';
 		MatInputModule,
 		MatButtonModule,
 		MatIconModule,
-		MatMenuModule
+    MatMenuModule,
+    MatDividerModule
 	],
 	declarations: [
 		HomeComponent,
 		FeedComponent,
 		NewPostComponent,
-		PostComponent
+    PostComponent,
+    ProfileComponent
 	]
 })
 export class HomeModule { }
