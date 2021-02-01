@@ -23,41 +23,31 @@ export class ProfileComponent implements OnInit {
 
 	ngOnInit(): void {
 		console.log(this.userService.currentUser);
-		// vv--remove comment when testing backend--vv
-		/*this.postService.getAllPosts()
-			.pipe(take(1))
+		this.userService.getAllPosts()
 			.subscribe(
 				(data) => {
-				  this.posts=data;
+          if (data.length>0){
+            this.posts=data;
+          }
 				},
 				(error) => {
 				  console.log('loading posts failed');
-				});*/
+				});
 	}
 
 	delete(post: Post): void {
-		this.postService.deletePost(post.id)
-			.pipe(take(1))
+    if(post._id != 'test0'){
+      this.postService.deletePost(post._id)
 			.subscribe(
 				(data) => {
-					posts.splice(posts.indexOf(post), 1);
+          this.posts.splice(this.posts.indexOf(post), 1);
 					console.log('Post deleted');
 				},
 				(error) => {
 					// posts.splice(posts.indexOf(post),1);
 					console.log('post removal failed');
 				});
+    }
 	}
-
-	/*getPosts():Array<Post>{
-	  return  [
-		{
-		id: 'test',
-		author: 'test',
-		title: 'test',
-		photoUrl: 'https://i.imgur.com/ixlPReX.png',
-		likes: []
-	  }];
-	}*/
 
 }

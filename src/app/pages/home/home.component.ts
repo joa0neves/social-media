@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit {
 	user: User;
 
 	constructor(
-		private userService: UserService
+    private userService: UserService,
+    private router: Router
 	) {
 		this.user = { } as User;
 	}
@@ -23,6 +24,11 @@ export class HomeComponent implements OnInit {
 				this.user = user;
 			}
 		);
-	}
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/auth'])
+  }
 
 }
