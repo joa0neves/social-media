@@ -22,8 +22,8 @@ export class AuthService {
 		);
 	}
 
-	register(email: string, password: string, firstname: string, lastname: string): Observable<void> {
-		return this.http.post<void>('http://localhost:4000/user/new', { email, password, firstname, lastname });
+	register(email: string, password: string, firstname: string, lastname: string) {
+		return this.http.post('http://localhost:4000/user/new', { email, password, firstname, lastname });
 	}
 
 	logout(): void {
