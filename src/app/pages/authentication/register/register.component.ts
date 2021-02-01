@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -10,9 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 	styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-	registerForm: FormGroup = this.formBuilder.group({
+  @Input() error: string | null;
+	form: FormGroup = this.formBuilder.group({
 		email: ['', Validators.required],
-		password: ['', Validators.required, Validators.minLength(6)],
+		password: ['', Validators.required],
 		firstname: ['', Validators.required],
 		lastname: ['', Validators.required],
 	});
@@ -21,30 +22,25 @@ export class RegisterComponent implements OnInit {
 
 	constructor(private formBuilder: FormBuilder,
 		private router: Router,
-		private authenticateService: AuthService
-	) { }
+		private authService: AuthService
+	) {
+    this.error = null;
+   }
 
 	ngOnInit(): void {
 	}
 
-	get f() { return this.registerForm.controls; }
-
-	onSubmit() {
-		this.submitted = true;
-
-		if (this.registerForm.invalid) {
-			return;
+  submit(): void {
+		if (this.form.valid) {
+			this.authService.register(
+				this.form.controls.email.value,
+				this.form.controls.password.value,
+				this.form.controls.firstname.value,
+				this.form.controls.lastname.value
+			).subscribe(
+				(success) => this.router.navigate(['/auth']),
+				(err) => this.error = 'Email invalid'
+			);
 		}
-
-		this.loading = true;
-		this.authenticateService.register(this.f.email.value, this.f.password.value, this.f.firstname.value, this.f.lastname.value)
-			.pipe(take(1))
-			.subscribe(
-				(data) => {
-					this.router.navigate(['login']);
-				},
-				(error) => {
-					console.log('register failed');
-				});
 	}
 }

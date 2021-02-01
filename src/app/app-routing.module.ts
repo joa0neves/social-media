@@ -13,7 +13,7 @@ const routes: Routes = [
 		path: 'auth',
 		loadChildren: () => import('./pages/authentication/authentication.module').then(m => m.AuthenticationModule),
 		canActivate: [AccessGuard]
-	}
+	},
 ];
 
 @NgModule({
