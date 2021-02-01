@@ -1,0 +1,33 @@
+<div class="center-me">
+  <form [formGroup]="form" (ngSubmit)="update()">
+    <p>
+      <mat-form-field>
+        <input type="text" matInput placeholder="New First Name" formControlName="firstname">
+        <!--<mat-error *ngIf="form.controls.firstname.invalid">First Name is required</mat-error>-->
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="text" matInput placeholder="New Last Name" formControlName="lastname">
+        <!--<mat-error *ngIf="form.controls.lastname.invalid">Last Name is required</mat-error>-->
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="text" matInput placeholder="New Email" formControlName="email">
+        <!--<mat-error *ngIf="form.controls.email.invalid">Email is required</mat-error>-->
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="password" matInput placeholder="New Password" formControlName="password">
+        <!--<mat-error *ngIf="form.controls.password.invalid">Password is required</mat-error>-->
+      </mat-form-field>
+    </p>
+    <div class="button">
+      <button type="submit" mat-raised-button  color="warn">DELETE ACCOUNT</button>
+      <button type="submit" mat-raised-button [disabled]="form.invalid">Update</button>
+    </div>
+  </form>
+</div>
+

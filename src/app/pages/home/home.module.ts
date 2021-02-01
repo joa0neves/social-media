@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
 	imports: [
@@ -36,7 +37,8 @@ import { ProfileComponent } from './profile/profile.component';
 		FeedComponent,
 		NewPostComponent,
     PostComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingsComponent
 	]
 })
 export class HomeModule { }
