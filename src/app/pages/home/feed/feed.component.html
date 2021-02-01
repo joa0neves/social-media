@@ -1,0 +1,15 @@
+<a routerLink="/home/profile" class="btn btn-link">Profile</a>
+<a routerLink="/home/new-post" class="btn btn-link" style="margin-right:100px; margin-left:100px;">New Post</a>
+<a routerLink="/" class="btn btn-link" (click)='logout()'>Logout</a>
+<div>
+	<div>
+		<h2>{{currentPost.title}}</h2>
+		<img src={{currentPost.photoUrl}} alt={{currentPost.title}} width="300">
+		<h2>by {{currentPost.author}}</h2>
+	</div>
+	<div>
+		<button (click)='previous()'>Previous</button>
+		<button (click)='like()'>Like -> {{currentPost.likes.length}}</button>
+		<button (click)='next()'>Next</button>
+	</div>
+</div>

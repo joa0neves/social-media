@@ -1,35 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PostComponent } from './Components/post/post.component';
-import { LoginComponent } from './Components/login/login.component';
-import { RegisterComponent } from './Components/register/register.component';
-import { HomePageComponent } from './Components/home-page/home-page.component';
+import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
-import { ProfileComponent } from './Components/profile/profile.component';
-import { NewPostComponent } from './Components/new-post/new-post.component';
-
-
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PostComponent,
-    LoginComponent,
-    RegisterComponent,
-    HomePageComponent,
-    ProfileComponent,
-    NewPostComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		HttpClientModule,
+		JwtModule.forRoot({
+			config: {
+				tokenGetter: () => localStorage.getItem('auth_token'),
+				allowedDomains: ["localhost:4000"],
+				disallowedRoutes: [
+					"localhost:4000/auth",
+					"localhost:4000/user/new",
+					"localhost:4000/forgot"
+				]
+			}
+		}),
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

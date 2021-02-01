@@ -1,35 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './Components/home-page/home-page.component';
-import { LoginComponent } from './Components/login/login.component';
-import { NewPostComponent } from './Components/new-post/new-post.component';
-import { ProfileComponent } from './Components/profile/profile.component';
-import { RegisterComponent } from './Components/register/register.component';
+import { AccessGuard } from './guards/access.guard';
+import { AuthGuard } from './guards/auth.guard';
 
-
-const routes: Routes = [ {
-  path: 'login',
-  component: LoginComponent,
-  },{
-    path: 'register',
-    component: RegisterComponent,
-  },{
-    path: 'private/homepage',
-    component: HomePageComponent,
-  },{
-    path: 'private/profile',
-    component: ProfileComponent,
-  },{
-    path: 'private/newPost',
-    component: NewPostComponent,
-  },{
-    path: '**',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },];
+const routes: Routes = [
+	{
+		path: '',
+		loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+		canActivate: [AuthGuard]
+	},
+	{
+		path: 'auth',
+		loadChildren: () => import('./pages/authentication/authentication.module').then(m => m.AuthenticationModule),
+		canActivate: [AccessGuard]
+	}
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }
