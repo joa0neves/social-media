@@ -1,26 +1,22 @@
-<h2>Login</h2>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-	<div class="form-group">
-		<label for="email">Email</label>
-		<input type="text" formControlName="email" class="form-control"
-			[ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-		<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-			<div *ngIf="f.email.errors.required">Email is required</div>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="password">Password</label>
-		<input type="password" formControlName="password" class="form-control"
-			[ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-		<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-			<div *ngIf="f.password.errors.required">Password is required</div>
-		</div>
-	</div>
-	<div class="form-group">
-		<button [disabled]="loading" class="btn btn-primary">
-			<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-			Login
-		</button>
-		<a routerLink="/register" class="btn btn-link">Register</a>
+<mat-card-title>Login</mat-card-title>
+<form [formGroup]="form" (ngSubmit)="submit()">
+	<p>
+		<mat-form-field>
+			<input type="text" matInput placeholder="Email" formControlName="username">
+			<mat-error *ngIf="form.controls.username.invalid">Email is required</mat-error>
+		</mat-form-field>
+	</p>
+	<p>
+		<mat-form-field>
+			<input type="password" matInput placeholder="Password" formControlName="password">
+			<mat-error *ngIf="form.controls.password.invalid">Password is required</mat-error>
+		</mat-form-field>
+	</p>
+	<p *ngIf="error" class="error">
+		{{ error }}
+	</p>
+	<div class="button">
+		<button type="button" mat-stroked-button color="warn">Sign-up</button>
+		<button type="submit" mat-raised-button [disabled]="form.invalid" color="primary">Login</button>
 	</div>
 </form>

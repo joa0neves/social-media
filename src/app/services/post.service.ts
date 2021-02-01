@@ -8,7 +8,6 @@ import { Post } from '../types/post';
 	providedIn: 'root'
 })
 export class PostService {
-
 	constructor(private http: HttpClient) { }
 
 	newPost(title: string, id: string, photoUrl: string) {
@@ -58,5 +57,4 @@ export class PostService {
 			})
 		);
 	}
-
 }

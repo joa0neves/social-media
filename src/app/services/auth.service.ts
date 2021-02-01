@@ -12,11 +12,13 @@ export class AuthService {
 
 	login(email: string, password: string) {
 		return this.http.post<JWT>('http://localhost:4000/auth', { email, password }).pipe(
-			map((res: JWT) => {
-				if (res.auth) {
-					localStorage.setItem('auth_token', res.token);
-				}
-			})
+			map(
+				(res: JWT) => {
+					if (res.auth) {
+						localStorage.setItem('auth_token', res.token);
+					}
+				},
+			)
 		);
 	}
 
