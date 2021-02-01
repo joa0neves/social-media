@@ -1,8 +1,8 @@
 .center-me {
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	height: 100%;
 	width: 100vw;
 	justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }

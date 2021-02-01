@@ -13,29 +13,21 @@ import { UserService } from 'src/app/services/user.service';
 	styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-	currentPost: Post = {
-		id: 'test',
-		author: 'test',
-		title: 'test',
-		photoUrl: 'https://i.imgur.com/ixlPReX.png',
-		likes: []
-	};
-
 	constructor(
 		private postService: PostService
 	) { }
 
 	ngOnInit(): void {
-		this.postService.getNextPost(this.currentPost.id)
+		/*this.postService.getNextPost(/*this.currentPost.id)
 			.pipe(take(1))
 			.subscribe(
 				(data) => {
-					this.currentPost = data;
+					//this.currentPost = data;
 					console.log('Post added');
 				},
 				(error) => {
 					console.log('post get failed');
-				});
+				});*/
 
 	}
 
@@ -43,7 +35,7 @@ export class FeedComponent implements OnInit {
 		localStorage.clear();
 	}
 
-	next(): void {
+	/*next(): void {
 		this.postService.getNextPost(this.currentPost.id)
 			.pipe(take(1))
 			.subscribe(
@@ -86,5 +78,5 @@ export class FeedComponent implements OnInit {
 				(error) => {
 					console.log('update failed');
 				});
-	}
+	}*/
 }

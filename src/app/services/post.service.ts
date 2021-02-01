@@ -35,11 +35,7 @@ export class PostService {
 	}
 
 	deletePost(id: string) {
-		return this.http.post<string>('http://localhost/user', { id }).pipe(
-			map((res: string) => {
-				return res;
-			})
-		);
+		return this.http.delete<Post>(`http://localhost:4000/post/${id}`);
 	}
 
 	updateLikes(id: string, likes: Array<string>) {
@@ -51,7 +47,7 @@ export class PostService {
 	}
 
 	getAllPosts(): Observable<Array<Post>> {
-		return this.http.get<string>('http://localhost/user/me/posts', {}).pipe(
+		return this.http.get<string>('http://localhost:4000/user/me/posts', {}).pipe(
 			map((res: string) => {
 				return JSON.parse(res);
 			})

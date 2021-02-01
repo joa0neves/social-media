@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
 	ngOnInit(): void {
 		console.log(this.userService.currentUser);
-		this.postService.getAllPosts()
+		this.userService.getAllPosts()
 			.subscribe(
 				(data) => {
           if (data.length>0){
@@ -36,28 +36,18 @@ export class ProfileComponent implements OnInit {
 	}
 
 	delete(post: Post): void {
-		this.postService.deletePost(post.id)
-			.pipe(take(1))
+    if(post._id != 'test0'){
+      this.postService.deletePost(post._id)
 			.subscribe(
 				(data) => {
-					posts.splice(posts.indexOf(post), 1);
+          this.posts.splice(this.posts.indexOf(post), 1);
 					console.log('Post deleted');
 				},
 				(error) => {
 					// posts.splice(posts.indexOf(post),1);
 					console.log('post removal failed');
 				});
+    }
 	}
-
-	/*getPosts():Array<Post>{
-	  return  [
-		{
-		id: 'test',
-		author: 'test',
-		title: 'test',
-		photoUrl: 'https://i.imgur.com/ixlPReX.png',
-		likes: []
-	  }];
-	}*/
 
 }

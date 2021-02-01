@@ -1,5 +1,5 @@
 export interface Post {
-	id: string;
+	_id: string;
 	author: string;
 	title: string;
 	photoUrl: string;
@@ -8,7 +8,7 @@ export interface Post {
 
 export const posts: Post[] = [
 	{
-		id: 'test0',
+		_id: 'test0',
 		author: 'test',
 		title: 'This means you have no posts',
 		photoUrl: 'https://pbs.twimg.com/media/EAmr-PAWsAEoiWR?format=jpg&name=900x900',
