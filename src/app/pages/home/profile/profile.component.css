@@ -15,3 +15,9 @@
 .post {
 	background-color: white;
 }
+
+.info {
+  display:inline-block;
+  justify-content: center;
+  width: 100vw;
+}

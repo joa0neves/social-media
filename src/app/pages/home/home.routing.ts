@@ -19,7 +19,7 @@ const routes: Routes = [
 				component: NewPostComponent
 			},
 			{
-				path: 'profile',
+				path: 'profile/:id',
 				component: ProfileComponent
 			},{
 				path: 'settings',

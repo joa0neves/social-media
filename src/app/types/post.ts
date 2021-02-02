@@ -10,25 +10,7 @@ export const posts: Post[] = [
 	{
 		_id: 'test0',
 		author: 'test',
-		title: 'test',
-		photoUrl: 'https://i.imgur.com/ixlPReX.png',
-		likes: []
-	}, {
-		_id: 'test1',
-		author: 'test',
-		title: 'test',
-		photoUrl: 'https://i.imgur.com/ixlPReX.png',
-		likes: []
-	}, {
-		_id: 'test2',
-		author: 'test',
-		title: 'test',
-		photoUrl: 'https://i.imgur.com/ixlPReX.png',
-		likes: []
-	}, {
-		_id: 'test3',
-		author: 'test',
-		title: 'test',
-		photoUrl: 'https://i.imgur.com/ixlPReX.png',
+		title: 'This means you have no posts',
+		photoUrl: 'https://pbs.twimg.com/media/EAmr-PAWsAEoiWR?format=jpg&name=900x900',
 		likes: []
 	}];
