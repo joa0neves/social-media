@@ -23,10 +23,18 @@ export class UserService {
 	public get isLoggedIn(): boolean {
 		const token = localStorage.getItem('auth_token');
 		if (token) { return !this.helper.isTokenExpired(token as string); }
-		else { this.auth.logout(); return false; }
+		else {return false; }
   }
 
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>('http://localhost:4000/user/me/posts');
+  }
+
+  deleteUser(){
+    return this.http.delete('http://localhost:4000/user/me');
+  }
+
+  updateUser(user:User){
+    return this.http.put<User>('http://localhost:4000/user/me',user);
   }
 }

@@ -1,5 +1,6 @@
  <div class="center-me">
 	<div *ngFor="let post of posts">
+    <div class="post">
     <img src={{post.photoUrl}} alt={{post.title}} width="300">
     <div style="display: flex" >
       <h2 style="margin-top: 12px;">{{post.title}}</h2>
@@ -12,5 +13,6 @@
       </button>
     </div>
     <mat-divider [inset]="true" style="margin-top: 12px; margin-bottom: 12px;" ></mat-divider>
-	</div>
+  </div>
+</div>
 </div>

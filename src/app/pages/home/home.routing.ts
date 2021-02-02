@@ -3,6 +3,7 @@ import { FeedComponent } from './feed/feed.component';
 import { HomeComponent } from './home.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
 	{
@@ -20,6 +21,9 @@ const routes: Routes = [
 			{
 				path: 'profile',
 				component: ProfileComponent
+			},{
+				path: 'settings',
+				component: SettingsComponent
 			}
 		]
 	}
