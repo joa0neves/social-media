@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { PostService } from '../../../services/post.service';
 import { UserService } from '../../../services/user.service';
 import { posts, Post } from '../../../types/post';
@@ -11,8 +10,6 @@ import { posts, Post } from '../../../types/post';
 	styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-	readonly User = this.userService.currentUser;
-
 	posts = posts;
 
 	constructor(
@@ -26,28 +23,27 @@ export class ProfileComponent implements OnInit {
 		this.userService.getAllPosts()
 			.subscribe(
 				(data) => {
-          if (data.length>0){
-            this.posts=data;
-          }
+					if (data.length > 0) {
+						this.posts = data;
+					}
 				},
 				(error) => {
-				  console.log('loading posts failed');
+					console.log('loading posts failed');
 				});
 	}
 
 	delete(post: Post): void {
-    if(post._id != 'test0'){
-      this.postService.deletePost(post._id)
-			.subscribe(
-				(data) => {
-          this.posts.splice(this.posts.indexOf(post), 1);
-					console.log('Post deleted');
-				},
-				(error) => {
-					// posts.splice(posts.indexOf(post),1);
-					console.log('post removal failed');
-				});
-    }
+		if (post._id !== 'test0') {
+			this.postService.deletePost(post._id)
+				.subscribe(
+					(data) => {
+						this.posts.splice(this.posts.indexOf(post), 1);
+						console.log('Post deleted');
+					},
+					(error) => {
+						// posts.splice(posts.indexOf(post),1);
+						console.log('post removal failed');
+					});
+		}
 	}
-
 }

@@ -1,12 +1,17 @@
 .center-me {
-	display: grid;
+	display: flex;
 	height: 100%;
 	width: 100vw;
 	justify-content: center;
-  align-items: center;
-  margin-top: 15px;
+	align-items: center;
 }
 
-.post{
-  background-color: white;
+.post-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 8px;
+}
+
+.post {
+	background-color: white;
 }

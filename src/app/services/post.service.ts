@@ -11,28 +11,28 @@ export class PostService {
 	constructor(private http: HttpClient) { }
 
 	newPost(title: string, id: string, photoUrl: string) {
-		return this.http.post<string>('http://localhost/user/new', { title, id, photoUrl }).pipe(
+		return this.http.post<string>('http://localhost/post', { title, id, photoUrl }).pipe(
 			map((res: string) => {
 				return res;
 			})
 		);
 	}
 
-	getNextPost(id: string): Observable<Post> {
-		return this.http.post<string>('http://localhost/', { id }).pipe(
-			map((res: string) => {
-				return JSON.parse(res);
-			})
-		);
-	}
+	// getNextPost(id: string): Observable<Post> {
+	// 	return this.http.post<string>('http://localhost/', { id }).pipe(
+	// 		map((res: string) => {
+	// 			return JSON.parse(res);
+	// 		})
+	// 	);
+	// }
 
-	getPreviousPost(id: string) {
-		return this.http.post<string>('http://localhost/', { id }).pipe(
-			map((res: string) => {
-				return JSON.parse(res);
-			})
-		);
-	}
+	// getPreviousPost(id: string) {
+	// 	return this.http.post<string>('http://localhost/', { id }).pipe(
+	// 		map((res: string) => {
+	// 			return JSON.parse(res);
+	// 		})
+	// 	);
+	// }
 
 	deletePost(id: string) {
 		return this.http.delete<Post>(`http://localhost:4000/post/${id}`);
@@ -46,11 +46,7 @@ export class PostService {
 		);
 	}
 
-	getAllPosts(): Observable<Array<Post>> {
-		return this.http.get<string>('http://localhost:4000/user/me/posts', {}).pipe(
-			map((res: string) => {
-				return JSON.parse(res);
-			})
-		);
+	getAllPosts(): Observable<Post[]> {
+		return this.http.get<Post[]>('http://localhost:4000/post');
 	}
 }

@@ -6,3 +6,19 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.card {
+	margin: 8px;
+	max-width: 480px;
+	max-height: 768px;
+}
+
+.fab-new-post {
+	position: fixed;
+	bottom: 10px;
+}
+
+.button {
+	display: flex;
+	justify-content: space-between;
+}

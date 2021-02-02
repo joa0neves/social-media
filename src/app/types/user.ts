@@ -1,7 +1,7 @@
 import { FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export interface User {
-	id?: string;
+	_id?: string;
 	email?: string;
 	firstname?: string;
 	lastname?: string;
@@ -11,14 +11,14 @@ export interface User {
 }
 
 export const atLeastOne = (validator: ValidatorFn) => (
-  group: FormGroup,
+	group: FormGroup,
 ): ValidationErrors | null => {
-  const hasAtLeastOne =
-    group &&
-    group.controls &&
-    Object.keys(group.controls).some(k => !validator(group.controls[k]));
+	const hasAtLeastOne =
+		group &&
+		group.controls &&
+		Object.keys(group.controls).some(k => !validator(group.controls[k]));
 
-  return hasAtLeastOne ? null : { atLeastOne: true };
+	return hasAtLeastOne ? null : { atLeastOne: true };
 };
 
 

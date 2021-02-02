@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
-import { AuthService } from '../../../services/auth.service';
 import { PostService } from 'src/app/services/post.service';
-import { Post } from '../../../types/post';
 import { UserService } from 'src/app/services/user.service';
-
+import { User } from 'src/app/types/user';
+import { Post } from '../../../types/post';
 
 @Component({
 	selector: 'app-home-page',
@@ -13,54 +10,57 @@ import { UserService } from 'src/app/services/user.service';
 	styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
+	posts: Post[] = [];
+	currentPostIdx = 0;
+	postUser: User = {} as User;
+	loaded = false;
+
 	constructor(
-		private postService: PostService
+		private postService: PostService,
+		private userService: UserService
 	) { }
 
 	ngOnInit(): void {
-		/*this.postService.getNextPost(/*this.currentPost.id)
-			.pipe(take(1))
-			.subscribe(
-				(data) => {
-					//this.currentPost = data;
-					console.log('Post added');
-				},
-				(error) => {
-					console.log('post get failed');
-				});*/
+		this.postService.getAllPosts().subscribe(
+			(data) => {
+				this.posts = data;
+				this.loaded = true;
+				this.getPostAuthor(this.posts[this.currentPostIdx].author);
+			}
+		);
+	}
 
+	getPostAuthor(id: string): void {
+		this.userService.getUser(id).subscribe(
+			(user) => {
+				this.postUser = user;
+			}
+		);
 	}
 
 	logout(): void {
 		localStorage.clear();
 	}
 
-	/*next(): void {
-		this.postService.getNextPost(this.currentPost.id)
-			.pipe(take(1))
-			.subscribe(
-				(data) => {
-					this.currentPost = data;
-					console.log('Post added');
-				},
-				(error) => {
-					console.log('post get failed');
-				});
+	next(): void {
+		if (this.currentPostIdx < this.posts.length) {
+			this.currentPostIdx++;
+			this.getPostAuthor(this.posts[this.currentPostIdx].author);
+		}
 	}
 
 	previous(): void {
-		this.postService.getPreviousPost(this.currentPost.id)
-			.pipe(take(1))
-			.subscribe(
-				(data) => {
-					this.currentPost = data;
-					console.log('Post added');
-				},
-				(error) => {
-					console.log('post get failed');
-				});
+		if (this.currentPostIdx > 0) {
+			this.currentPostIdx--;
+			this.getPostAuthor(this.posts[this.currentPostIdx].author);
+		}
 	}
 
+	toggleLike(): void {
+		console.log('kinda liked it');
+	}
+
+	/*
 	like(): void {
 		const currentUser = localStorage.getItem('sessionUser');
 		if (!this.currentPost.likes.includes(this.currentPost.author)) {

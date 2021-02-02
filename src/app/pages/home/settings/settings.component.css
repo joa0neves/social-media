@@ -1,6 +1,6 @@
 .mat-form-field {
 	width: 100%;
-  min-width: 300px;
+	min-width: 300px;
 }
 
 mat-card-content {
@@ -16,12 +16,14 @@ mat-card-content {
 
 .button {
 	display: flex;
-  justify-content: space-between;
-  justify-content: center;
+	justify-content: space-between;
 }
 
 .center-me {
-  display: flex;
-  justify-content: center;
-  background-color: white
+	display: flex;
+	height: 100%;
+	width: 100vw;
+	justify-content: center;
+	align-items: center;
+	background-color: white
 }
