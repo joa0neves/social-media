@@ -1,6 +1,7 @@
 import { FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export interface User {
+	picture?: string;
 	_id?: string;
 	email?: string;
 	firstname?: string;

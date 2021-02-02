@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/types/user';
 import { PostService } from '../../../services/post.service';
 import { UserService } from '../../../services/user.service';
 import { posts, Post } from '../../../types/post';
@@ -10,7 +11,11 @@ import { posts, Post } from '../../../types/post';
 	styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-	posts = posts;
+  _id:string ='';
+  curr_id:string = '';
+  user:User={};
+  show=true;
+  posts = posts;
 
 	constructor(
 		private postService: PostService,
@@ -19,7 +24,39 @@ export class ProfileComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		this.getCurrentUserPosts();
+    this._id=this.router.url.split('/')[2];
+    this.userService.currentUser.subscribe(
+			(user) => {
+				if(this._id==user._id){
+          this.user.picture= user.picture;
+          this.user.firstname=user.firstname || '';
+          this.user.firstname=this.user.firstname[0].toUpperCase() +this.user.firstname.slice(1);
+          this.user.lastname=user.lastname || '';
+          this.user.lastname=this.user.lastname[0].toUpperCase() +this.user.lastname.slice(1);
+          this.getCurrentUserPosts();
+        }else{
+          this.getUser(this._id);
+          this.getUserPosts(this._id);
+          this.show = false;
+        }
+			}
+		);
+  }
+
+  getUser(id:string){
+    this.userService.getUser(id)
+    .subscribe(
+      (user) => {
+          this.user.picture= user.picture;
+          this.user.firstname=user.firstname || '';
+          this.user.firstname=this.user.firstname[0].toUpperCase() +this.user.firstname.slice(1);
+          this.user.lastname=user.lastname || '';
+          this.user.lastname=this.user.lastname[0].toUpperCase() +this.user.lastname.slice(1);
+          this.getCurrentUserPosts();
+      },
+      (error) => {
+        console.log('loading posts failed');
+      });
   }
 
   getCurrentUserPosts(){
