@@ -30,8 +30,12 @@ export class UserService {
 		else { return false; }
 	}
 
-	getAllPosts(): Observable<Post[]> {
+	getAllCurrentUserPosts(): Observable<Post[]> {
 		return this.http.get<Post[]>('http://localhost:4000/user/me/posts');
+  }
+
+	getAllUserPosts(_id:string): Observable<Post[]> {
+		return this.http.get<Post[]>(`http://localhost:4000/user/${_id}/posts`);
 	}
 
 	deleteUser(): Observable<User> {

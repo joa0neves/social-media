@@ -19,8 +19,11 @@ export class ProfileComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		console.log(this.userService.currentUser);
-		this.userService.getAllPosts()
+		this.getCurrentUserPosts();
+  }
+
+  getCurrentUserPosts(){
+    this.userService.getAllCurrentUserPosts()
 			.subscribe(
 				(data) => {
 					if (data.length > 0) {
@@ -30,7 +33,20 @@ export class ProfileComponent implements OnInit {
 				(error) => {
 					console.log('loading posts failed');
 				});
-	}
+  }
+
+  getUserPosts(_id:string){
+    this.userService.getAllUserPosts(_id)
+			.subscribe(
+				(data) => {
+					if (data.length > 0) {
+						this.posts = data;
+					}
+				},
+				(error) => {
+					console.log('loading posts failed');
+				});
+  }
 
 	delete(post: Post): void {
 		if (post._id !== 'test0') {
