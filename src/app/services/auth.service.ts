@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { JWT } from '../types/jwt';
+import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient,private router:Router) { }
 
 	login(email: string, password: string) {
 		return this.http.post<JWT>('http://localhost:4000/auth', { email, password }).pipe(
@@ -27,6 +28,7 @@ export class AuthService {
 	}
 
 	logout(): void {
-		localStorage.removeItem('auth_token');
+    localStorage.removeItem('auth_token');
+    this.router.navigate(['auth']);
 	}
 }
