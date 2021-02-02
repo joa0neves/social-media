@@ -17,8 +17,7 @@
 }
 
 .info {
-  display: flex;
-	width: 100vw;
-	justify-content: center;
-	align-items: center;
+  display:inline-block;
+  justify-content: center;
+  width: 100vw;
 }

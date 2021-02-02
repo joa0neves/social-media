@@ -28,7 +28,11 @@ export class ProfileComponent implements OnInit {
     this.userService.currentUser.subscribe(
 			(user) => {
 				if(this._id==user._id){
-          this.user.picture= user.picture;
+          if(user.picture == ""){
+            this.user.picture = 'https://pbs.twimg.com/media/EAmr-PAWsAEoiWR?format=jpg&name=900x900';
+          }else{
+            this.user.picture= user.picture;
+          }
           this.user.firstname=user.firstname || '';
           this.user.firstname=this.user.firstname[0].toUpperCase() +this.user.firstname.slice(1);
           this.user.lastname=user.lastname || '';
@@ -47,12 +51,16 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(id)
     .subscribe(
       (user) => {
+        if(user.picture == ""){
+          this.user.picture = 'https://pbs.twimg.com/media/EAmr-PAWsAEoiWR?format=jpg&name=900x900';
+        }else{
           this.user.picture= user.picture;
-          this.user.firstname=user.firstname || '';
-          this.user.firstname=this.user.firstname[0].toUpperCase() +this.user.firstname.slice(1);
-          this.user.lastname=user.lastname || '';
-          this.user.lastname=this.user.lastname[0].toUpperCase() +this.user.lastname.slice(1);
-          this.getCurrentUserPosts();
+        }
+        this.user.firstname=user.firstname || '';
+        this.user.firstname=this.user.firstname[0].toUpperCase() +this.user.firstname.slice(1);
+        this.user.lastname=user.lastname || '';
+        this.user.lastname=this.user.lastname[0].toUpperCase() +this.user.lastname.slice(1);
+        this.getCurrentUserPosts();
       },
       (error) => {
         console.log('loading posts failed');
