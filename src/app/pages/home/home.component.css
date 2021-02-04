@@ -1,24 +1,8 @@
-.app-container {
-	display: flex;
-	overflow: hidden;
-	height: 100%;
-	width: 100%;
-}
-
-.home-link {
-	cursor: pointer;
-}
-
-.home-link:focus {
-	outline: none;
-}
-
 .container {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
 }
 
-.example-spacer {
-	flex: 1 1 auto;
+.app-container {
+	padding: 16px;
 }

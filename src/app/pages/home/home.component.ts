@@ -13,11 +13,11 @@ export class HomeComponent implements OnInit {
 	user: User;
 
 	constructor(
-    private userService: UserService,
-    private router: Router,
-    private authService:AuthService
+		private userService: UserService,
+		private router: Router,
+		private authService: AuthService
 	) {
-		this.user = { } as User;
+		this.user = {} as User;
 	}
 
 	ngOnInit(): void {
@@ -26,10 +26,10 @@ export class HomeComponent implements OnInit {
 				this.user = user;
 			}
 		);
-  }
+	}
 
-  logout(){
-    this.authService.logout();
-  }
+	logout(): void {
+		this.authService.logout();
+	}
 
 }

@@ -17,11 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		JwtModule.forRoot({
 			config: {
 				tokenGetter: () => localStorage.getItem('auth_token'),
-				allowedDomains: ["localhost:4000"],
+				allowedDomains: ['localhost:4000'],
 				disallowedRoutes: [
-					"localhost:4000/auth",
-					"localhost:4000/user/new",
-					"localhost:4000/forgot"
+					'localhost:4000/auth',
+					'localhost:4000/user/new',
+					'localhost:4000/forgot'
 				]
 			}
 		}),

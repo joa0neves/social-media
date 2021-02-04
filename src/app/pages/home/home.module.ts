@@ -16,6 +16,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
+import { FeedCardModule } from '../../components/feed-card/feed-card.module';
+import { HeaderModule } from '../../components/header/header.module';
 
 @NgModule({
 	imports: [
@@ -29,16 +31,18 @@ import { SettingsComponent } from './settings/settings.component';
 		MatInputModule,
 		MatButtonModule,
 		MatIconModule,
-    MatMenuModule,
-    MatDividerModule
+		FeedCardModule,
+		MatMenuModule,
+		MatDividerModule,
+		HeaderModule
 	],
 	declarations: [
 		HomeComponent,
 		FeedComponent,
 		NewPostComponent,
-    PostComponent,
-    ProfileComponent,
-    SettingsComponent
+		PostComponent,
+		ProfileComponent,
+		SettingsComponent
 	]
 })
 export class HomeModule { }

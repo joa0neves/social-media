@@ -1,17 +1,8 @@
 <div class="container">
-	<mat-toolbar color="primary">
-		<span routerLink="" class="home-link">Desocial</span>
-		<span class="example-spacer"></span>
-		<span>{{ user.firstname }} {{ user.lastname }}</span>
-		<button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu">
-			<mat-icon>person</mat-icon>
-		</button>
-		<mat-menu #menu="matMenu">
-			<button [routerLink]="['profile',user._id]" mat-menu-item>Profile</button>
-			<button routerLink="settings" mat-menu-item>Settings</button>
-			<button (click)="logout()" mat-menu-item>Logout</button>
-		</mat-menu>
-	</mat-toolbar>
+	<app-header
+		[isLoggedIn]="true"
+		[user]="user">
+	</app-header>
 	<div class="app-container">
 		<router-outlet></router-outlet>
 	</div>

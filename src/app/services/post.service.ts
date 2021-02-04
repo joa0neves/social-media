@@ -34,16 +34,12 @@ export class PostService {
 	// 	);
 	// }
 
-	deletePost(id: string) {
+	deletePost(id: string): Observable<Post> {
 		return this.http.delete<Post>(`http://localhost:4000/post/${id}`);
 	}
 
-	updateLikes(id: string, likes: Array<string>) {
-		return this.http.post<string>('http://localhost/', { id, likes }).pipe(
-			map((res: string) => {
-				return res;
-			})
-		);
+	updateLikes(id: string): Observable<Post> {
+		return this.http.post<Post>(`http://localhost:4000/post/${id}/likes`, {});
 	}
 
 	getAllPosts(): Observable<Post[]> {

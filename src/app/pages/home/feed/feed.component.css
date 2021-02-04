@@ -1,24 +1,11 @@
-.center-me {
+.feed-cards {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
-	width: 100vw;
-	justify-content: center;
 	align-items: center;
-}
-
-.card {
-	margin: 8px;
-	max-width: 480px;
-	max-height: 768px;
 }
 
 .fab-new-post {
 	position: fixed;
-	bottom: 10px;
-}
-
-.button {
-	display: flex;
-	justify-content: space-between;
+	bottom: 20px;
+	right: 20px;
 }
