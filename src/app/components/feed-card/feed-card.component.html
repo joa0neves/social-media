@@ -1,0 +1,18 @@
+<mat-card class="card" *ngIf="loaded">
+	<mat-card-title>{{ post.title }}</mat-card-title>
+	<mat-card-subtitle>
+		by <a [routerLink]="['/profile', postAuthor._id]">{{ postAuthor.firstname }} {{ postAuthor.lastname }}</a>
+	</mat-card-subtitle>
+	<img mat-card-image src="{{ post.photoUrl }}">
+	<mat-card-content>
+		<button mat-icon-button color="warn" (click)="handleLike(post._id)">
+			<mat-icon>favorite</mat-icon>
+		</button>
+		<span>{{post.likes.length}}</span>
+		<div>
+			<span *ngIf="post.likes.length === 0">
+				This post has no likes, be the first!
+			</span>
+		</div>
+	</mat-card-content>
+</mat-card>

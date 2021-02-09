@@ -31,7 +31,7 @@ export class SettingsComponent implements OnInit {
 		this.getUser();
 	}
 
-	getUser() {
+	getUser(): void {
 		this.userService.currentUser.subscribe(
 			(user) => {
 				this.user = user;
@@ -39,19 +39,19 @@ export class SettingsComponent implements OnInit {
 		);
 	}
 
-	update() {
+	update(): void {
 		const updatedUser = {} as User;
 
-		if (this.form.controls.firstname.value != '') {
+		if (this.form.controls.firstname.value !== '') {
 			updatedUser.firstname = this.form.controls.firstname.value;
 		}
-		if (this.form.controls.lastname.value != '') {
+		if (this.form.controls.lastname.value !== '') {
 			updatedUser.lastname = this.form.controls.lastname.value;
 		}
-		if (this.form.controls.email.value != '') {
+		if (this.form.controls.email.value !== '') {
 			updatedUser.email = this.form.controls.email.value;
 		}
-		if (this.form.controls.password.value != '') {
+		if (this.form.controls.password.value !== '') {
 			updatedUser.password = this.form.controls.password.value;
 		}
 
@@ -59,7 +59,7 @@ export class SettingsComponent implements OnInit {
 			.subscribe(
 				(data) => {
 					console.log('User updated');
-					this.getUser();
+					this.user = data;
 				},
 				(error) => {
 					console.log('User update failed');
@@ -67,7 +67,7 @@ export class SettingsComponent implements OnInit {
 
 	}
 
-	delete() {
+	delete(): void {
 		this.userService.deleteUser()
 			.subscribe(
 				(data) => {

@@ -22,8 +22,7 @@ mat-card-content {
 .center-me {
 	display: flex;
 	height: 100%;
-	width: 100vw;
+	width: 100%;
 	justify-content: center;
 	align-items: center;
-	background-color: white
 }

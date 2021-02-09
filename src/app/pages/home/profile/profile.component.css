@@ -1,23 +1,33 @@
-.center-me {
+.profile-container {
 	display: flex;
-	height: 100%;
-	width: 100vw;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	width: 100%;
+}
+
+.profile-card-content {
+	display: flex;
+	flex-direction: row;
+	min-width: 500px;
+	max-height: 500px;
+	padding: 0;
+}
+
+.profile-details {
+	margin-left: 16px;
 }
 
 .post-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	margin-top: 16px;
+	display: inline-grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 8px;
 }
 
-.post {
-	background-color: white;
+.post-card-content {
+	max-width: fit-content;
 }
 
-.info {
-  display:inline-block;
-  justify-content: center;
-  width: 100vw;
+.post-card-content > img {
+	border-radius: 4px;
 }

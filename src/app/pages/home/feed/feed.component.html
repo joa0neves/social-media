@@ -1,27 +1,9 @@
-<div class="center-me" *ngIf="loaded">
-	<mat-card class="card">
-		<mat-card-title>{{ posts[currentPostIdx].title }}</mat-card-title>
-		<mat-card-subtitle>by {{ postUser.firstname }} {{ postUser.lastname }} </mat-card-subtitle>
-		<img mat-card-image src="{{ posts[currentPostIdx].photoUrl }}">
-		<mat-card-content>
-			<button mat-icon-button color="warn" (click)="toggleLike()">
-				<mat-icon>favorite</mat-icon>
-			</button>
-			<span>{{posts[currentPostIdx].likes.length}}</span>
-			<div>
-				<span *ngIf="posts[currentPostIdx].likes.length === 0">
-					This post has no likes, be the first!
-				</span>
-			</div>
-		</mat-card-content>
-		<div class="button">
-			<button type="button" (click)="previous()" [disabled]="currentPostIdx === 0" mat-stroked-button
-				color="primary">Previous</button>
-			<button type="button" (click)="next()" [disabled]="currentPostIdx === posts.length - 1" mat-raised-button
-				color="warn">Next</button>
-		</div>
-	</mat-card>
-	<button mat-fab color="primary" aria-label="New Post" class="fab-new-post">
-		<mat-icon>add</mat-icon>
-	</button>
+<div class="feed-cards">
+	<app-feed-card *ngFor="let post of posts | async" 
+		[post]="post"
+		(postLike)="handlePostLike($event)">
+	</app-feed-card>
 </div>
+<button mat-fab color="primary" aria-label="New Post" class="fab-new-post">
+	<mat-icon>add</mat-icon>
+</button>

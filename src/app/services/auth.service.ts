@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 	providedIn: 'root'
 })
 export class AuthService {
-	constructor(private http: HttpClient,private router:Router) { }
+	constructor(private http: HttpClient, private router: Router) { }
 
 	login(email: string, password: string) {
 		return this.http.post<JWT>('http://localhost:4000/auth', { email, password }).pipe(
@@ -27,7 +27,7 @@ export class AuthService {
 	}
 
 	logout(): void {
-    localStorage.removeItem('auth_token');
-    this.router.navigate(['auth']);
+		localStorage.removeItem('auth_token');
+		this.router.navigate(['auth']);
 	}
 }
