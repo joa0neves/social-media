@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="mat-elevation-z6">
 	<span routerLink="" class="home-link">Desocial</span>
 	<span class="example-spacer"></span>
 	<div *ngIf="isLoggedIn">
@@ -9,7 +9,7 @@
 		<mat-menu #menu="matMenu">
 			<button [routerLink]="['profile',user._id]" mat-menu-item>Profile</button>
 			<button routerLink="settings" mat-menu-item>Settings</button>
-			<button mat-menu-item>Logout</button>
+			<button mat-menu-item (click)="logoutClick()">Logout</button>
 		</mat-menu>
 	</div>
 </mat-toolbar>

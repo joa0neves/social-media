@@ -1,7 +1,8 @@
 <div class="container">
 	<app-header
 		[isLoggedIn]="true"
-		[user]="user">
+		[user]="user"
+		(logout)="logout()">
 	</app-header>
 	<div class="app-container">
 		<router-outlet></router-outlet>

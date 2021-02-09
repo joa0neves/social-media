@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/types/user';
 
 @Component({
@@ -9,10 +9,15 @@ import { User } from 'src/app/types/user';
 export class HeaderComponent implements OnInit {
 	@Input() isLoggedIn!: boolean;
 	@Input() user!: User;
+	@Output() logout = new EventEmitter<void>();
 
 	constructor() { }
 
-	ngOnInit() {
+	ngOnInit(): void {
+	}
+
+	logoutClick(): void {
+		this.logout.emit();
 	}
 
 }
