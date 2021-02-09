@@ -32,10 +32,14 @@ export class UserService {
 
 	getAllCurrentUserPosts(): Observable<Post[]> {
 		return this.http.get<Post[]>('http://localhost:4000/user/me/posts');
-  }
+	}
 
-	getAllUserPosts(_id:string): Observable<Post[]> {
+	getAllUserPosts(_id: string): Observable<Post[]> {
 		return this.http.get<Post[]>(`http://localhost:4000/user/${_id}/posts`);
+	}
+
+	getAllUserLikes(): Observable<any> {
+		return this.http.get<Post[]>('http://localhost:4000/user/me/likes');
 	}
 
 	deleteUser(): Observable<User> {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import { Post } from 'src/app/types/post';
@@ -10,19 +9,20 @@ import { Post } from 'src/app/types/post';
 	styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-	posts!: Observable<Post[]>;
+	posts!: Post[];
 
 	constructor(
 		private postService: PostService,
-		public userService: UserService
+		private userService: UserService
 	) { }
 
 	ngOnInit(): void {
-		this.posts = this.postService.getAllPosts();
+		this.postService.getAllPosts().subscribe(
+			(data) => this.posts = data
+		);
 	}
 
 	handlePostLike(postId: string): void {
-		console.log('Liked post', postId);
+		
 	}
-
 }

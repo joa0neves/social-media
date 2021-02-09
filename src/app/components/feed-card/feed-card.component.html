@@ -5,8 +5,8 @@
 	</mat-card-subtitle>
 	<img mat-card-image src="{{ post.photoUrl }}">
 	<mat-card-content>
-		<button mat-icon-button color="warn" (click)="handleLike(post._id)">
-			<mat-icon>favorite</mat-icon>
+		<button mat-icon-button color="warn" type="button" (click)="handleLike(post._id)">
+			<mat-icon>{{postIsLiked ? 'favorite' : 'favorite_border'}}</mat-icon>
 		</button>
 		<span>{{post.likes.length}}</span>
 		<div>
