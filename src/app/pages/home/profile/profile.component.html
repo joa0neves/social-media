@@ -1,31 +1,33 @@
-<div class="profile-container">
-	<mat-card [ngStyle]="{'min-width': 'fit-content'}">
-		<mat-card-content ngClass="profile-card-content">
-			<img mat-card-xl-image src="{{ user.picture }}" style="border-radius: 4px">
-			<div class="profile-details">
-				<h2>{{user.firstname}} {{user.lastname}}</h2>
-				<h3>No. of Posts: {{posts.length}}</h3>
-			</div>
-		</mat-card-content>
-	</mat-card>
-	<div class="post-grid">
-		<mat-card *ngFor="let post of posts">
-			<mat-card-content ngClass="post-card-content">
-				<img mat-card-image src={{post.photoUrl}} alt={{post.title}}>
-				<div style="display: flex">
-					<h3 style="margin-top: 12px;">{{post.title}}</h3>
-					<mat-divider [vertical]="true" style="padding-right: 5px; padding-left: 5px;"></mat-divider>
-					<h2 style="color: #F44336; margin-top: 12px; padding-left:5px">{{post.likes.length}}</h2>
-					<span class="material-icons"
-						style="color: #F44336; margin-top: 16px; padding-left: 5px">favorite</span>
-					<mat-divider [vertical]="true" style="padding-right: 5px; padding-left: 5px;"></mat-divider>
-					<div *ngIf="show">
-						<button (click)='delete(post)' mat-fab color="disabled" aria-label="Delete">
-							<mat-icon>delete</mat-icon>
-						</button>
-					</div>
+<div class="container">
+	<div class="profile-container">
+		<mat-card [ngStyle]="{'min-width': 'fit-content'}">
+			<mat-card-content ngClass="profile-card-content">
+				<img mat-card-xl-image src="{{ user.picture }}" style="border-radius: 4px">
+				<div class="profile-details">
+					<h2>{{user.firstname}} {{user.lastname}}</h2>
+					<h3>No. of Posts: {{posts.length}}</h3>
 				</div>
 			</mat-card-content>
 		</mat-card>
+		<div class="post-grid">
+			<mat-card *ngFor="let post of posts">
+				<mat-card-content ngClass="post-card-content">
+					<img mat-card-image src={{post.photoUrl}} alt={{post.title}}>
+					<div style="display: flex">
+						<h3 style="margin-top: 12px;">{{post.title}}</h3>
+						<mat-divider [vertical]="true" style="padding-right: 5px; padding-left: 5px;"></mat-divider>
+						<h2 style="color: #F44336; margin-top: 12px; padding-left:5px">{{post.likes.length}}</h2>
+						<span class="material-icons"
+							style="color: #F44336; margin-top: 16px; padding-left: 5px">favorite</span>
+						<mat-divider [vertical]="true" style="padding-right: 5px; padding-left: 5px;"></mat-divider>
+						<div *ngIf="show">
+							<button (click)='delete(post)' mat-fab color="disabled" aria-label="Delete">
+								<mat-icon>delete</mat-icon>
+							</button>
+						</div>
+					</div>
+				</mat-card-content>
+			</mat-card>
+		</div>
 	</div>
 </div>
