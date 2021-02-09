@@ -4,7 +4,6 @@ import { FeedComponent } from './feed/feed.component';
 import { HomeRoutes } from './home.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewPostComponent } from './new-post/new-post.component';
-import { PostComponent } from './post/post.component';
 import { HomeComponent } from './home.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -40,7 +39,6 @@ import { HeaderModule } from '../../components/header/header.module';
 		HomeComponent,
 		FeedComponent,
 		NewPostComponent,
-		PostComponent,
 		ProfileComponent,
 		SettingsComponent
 	]

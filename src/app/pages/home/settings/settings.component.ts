@@ -1,4 +1,3 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -58,7 +57,7 @@ export class SettingsComponent implements OnInit {
 		this.userService.updateUser(updatedUser)
 			.subscribe(
 				(data) => {
-					console.log('User updated');
+					alert('User updated');
 					this.user = data;
 				},
 				(error) => {
@@ -68,7 +67,9 @@ export class SettingsComponent implements OnInit {
 	}
 
 	delete(): void {
-		this.userService.deleteUser()
+		const confirmedDeletion = confirm('This process is not reversible, do you want to delete your account?');
+		if (confirmedDeletion) {
+			this.userService.deleteUser()
 			.subscribe(
 				(data) => {
 					console.log('User deleted');
@@ -77,6 +78,7 @@ export class SettingsComponent implements OnInit {
 				(error) => {
 					console.log('User removal failed');
 				});
+		}
 	}
 
 }

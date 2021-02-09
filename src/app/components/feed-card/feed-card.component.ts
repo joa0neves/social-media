@@ -18,16 +18,19 @@ export class FeedCardComponent implements OnInit {
 	constructor(
 		private userService: UserService,
 		private postService: PostService
-	) {	}
+	) { }
 
 	ngOnInit(): void {
 		this.userService.getUser(this.post.author).subscribe(
-			(data) => { this.postAuthor = data; this.loaded = true; }
-		);
-		this.postService.getPostLikes(this.post._id).subscribe(
-			(data: User[]) => {
-				const foundUser = data.find(user => user._id === this.postAuthor._id);
-				if (foundUser) { this.postIsLiked = true; }
+			(data) => {
+				this.postAuthor = data;
+				this.postService.getPostLikes(this.post._id).subscribe(
+					(users: User[]) => {
+						const foundUser = users.find(user => user._id === this.postAuthor._id);
+						if (foundUser) { this.postIsLiked = true; }
+						this.loaded = true;
+					}
+				);
 			}
 		);
 	}
