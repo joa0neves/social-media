@@ -29,7 +29,6 @@ export class NewPostComponent implements OnInit {
 		title: ['', Validators.required]
 	});
   photo: File | null = null;
-
 	loading = false;
 	submitted = false;
   photoUrl:string='';
