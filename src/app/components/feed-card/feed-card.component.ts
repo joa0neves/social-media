@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { Post } from 'src/app/types/post';
 import { User } from 'src/app/types/user';
