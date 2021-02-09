@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import { User } from '../../../types/user';
 import { UserService } from '../../../services/user.service';
 import { PostService } from '../../../services/post.service';
+import { Post } from 'src/app/types/post';
+import { ThemePalette } from '@angular/material/core';
+import { MaxSizeValidator } from '@angular-material-components/file-input';
+
 
 @Component({
 	selector: 'app-new-post',
@@ -12,46 +17,73 @@ import { PostService } from '../../../services/post.service';
 	styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent implements OnInit {
+
+  color: ThemePalette = 'primary';
+  disabled: boolean = false;
+  multiple: boolean = false;
+  accept: string=".png, .jpg, .jpeg";
+
+  fileControl: FormControl;
+
 	postForm: FormGroup = this.formBuilder.group({
-		title: ['', Validators.required],
-		photoURL: ['', Validators.required]
+		title: ['', Validators.required]
 	});
+  photo: File | null = null;
+  //fileToUpload!: File = null;
 	loading = false;
 	submitted = false;
+  photoUrl:string='';
 
 	constructor(
+    public dialogRef: MatDialogRef<NewPostComponent>,
 		private formBuilder: FormBuilder,
-		private router: Router,
 		private postService: PostService,
 		private userService: UserService
-	) { }
+	) {
+    this.fileControl = new FormControl(this.photo, [
+      Validators.required,
+      MaxSizeValidator(16 * 1024)
+    ])
+   }
 
 	ngOnInit(): void {
+    this.fileControl.valueChanges.subscribe((files: any) => {
+      console.log(files);
+      //this.photo=files
+      this.postService.uploadPhoto(files).subscribe(
+        (data:any) => {
+          this.photoUrl=data.url;
+          // do something, if upload success
+          console.log('it work')
+          }
+
+        );
+    })
+
 	}
+
+
+
+  uploadFileToActivity() {
+    this.postService.newPost(this.f.title.value,this.photoUrl).subscribe(
+      data => {
+      // do something, if upload success
+      console.log('it work')
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  onNoClick():void{
+    this.dialogRef.close();
+  }
 
 	get f() { return this.postForm.controls; }
 
 	onSubmit() {
-		this.submitted = true;
-		const currentUser = this.userService.currentUser;
+    this.uploadFileToActivity();
 
-		// stop here if form is invalid
-		if (this.postForm.invalid) {
-			return;
-		}
-
-		this.loading = true;
-		if (currentUser) {
-			/*this.postService.newPost(this.f.title.value, currentUser.id, this.f.photoURL.value)
-				.pipe(take(1))
-				.subscribe(
-					() => {
-						// navigate to private homepage
-						this.router.navigate(['private/homepage']);
-					},
-					(error) => {
-						console.log('submission failed');
-					});*/
-		}
 	}
 }
+
+

@@ -1,5 +1,7 @@
+import { MaxSizeValidator } from '@angular-material-components/file-input';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
@@ -17,6 +19,14 @@ export class RegisterComponent implements OnInit {
 		firstname: ['', Validators.required],
 		lastname: ['', Validators.required],
 	});
+
+  color: ThemePalette = 'primary';
+  disabled: boolean = false;
+  multiple: boolean = false;
+  accept: string=".png, .jpg, .jpeg";
+  photo: File | null = null;
+
+  fileControl: FormControl;
 	submitted = false;
 	loading = false;
 
@@ -25,6 +35,10 @@ export class RegisterComponent implements OnInit {
 		private authService: AuthService
 	) {
     this.error = null;
+    this.fileControl = new FormControl(this.photo, [
+      Validators.required,
+      MaxSizeValidator(16 * 1024)
+    ])
    }
 
 	ngOnInit(): void {

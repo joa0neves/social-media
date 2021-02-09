@@ -11,9 +11,19 @@ import { User } from '../types/user';
 export class PostService {
 	constructor(private http: HttpClient) { }
 
-	newPost(title: string, id: string, photoUrl: string): Observable<Post> {
-		return this.http.post<Post>('http://localhost/post', { title, id, photoUrl });
+	newPost(title: string, photoUrl: string) {
+		return this.http.post<string>('http://localhost:4000/post', { title, photoUrl }).pipe(
+			map((res: string) => {
+				return res;
+			})
+		);
 	}
+
+  uploadPhoto(file: File){
+    const formData: FormData = new FormData();
+    formData.append('fileKey', file, file.name);
+    return this.http.post('http://localhost:4000/upload', formData);
+  }
 
 	deletePost(id: string): Observable<Post> {
 		return this.http.delete<Post>(`http://localhost:4000/post/${id}`);

@@ -1,5 +1,11 @@
 <mat-card-title>Register</mat-card-title>
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="submit()">
+  <p>
+    <mat-form-field>
+      <ngx-mat-file-input [formControl]="fileControl" [multiple]="multiple" [accept]="accept" [color]="color">
+      </ngx-mat-file-input>
+   </mat-form-field>
+  </p>
   <p>
 		<mat-form-field>
 			<input type="text" matInput placeholder="First Name" formControlName="firstname">
@@ -26,6 +32,6 @@
   </p>
   <div class="button">
 		<a routerLink="/auth" mat-stroked-button color="warn">Cancel</a>
-		<button type="submit" mat-raised-button [disabled]="form.invalid" color="primary">Submit</button>
+		<button type="submit" mat-raised-button [disabled]="form.invalid || fileControl.invalid" color="primary">Submit</button>
 	</div>
 </form>
