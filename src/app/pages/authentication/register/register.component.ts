@@ -5,6 +5,7 @@ import { ThemePalette } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
 	selector: 'app-register',
@@ -13,6 +14,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   @Input() error: string | null;
+
+  color: ThemePalette = 'primary';
+  disabled: boolean = false;
+  multiple: boolean = false;
+  accept: string=".png, .jpg, .jpeg";
+
+
+  fileControl: FormControl;
+
 	form: FormGroup = this.formBuilder.group({
 		email: ['', Validators.required],
 		password: ['', Validators.required],
@@ -20,19 +30,19 @@ export class RegisterComponent implements OnInit {
 		lastname: ['', Validators.required],
 	});
 
-  color: ThemePalette = 'primary';
-  disabled: boolean = false;
-  multiple: boolean = false;
-  accept: string=".png, .jpg, .jpeg";
+
+
   photo: File | null = null;
 
-  fileControl: FormControl;
+  photoUrl:string ="";
+
 	submitted = false;
 	loading = false;
 
 	constructor(private formBuilder: FormBuilder,
 		private router: Router,
-		private authService: AuthService
+		private authService: AuthService,
+    private postService:PostService
 	) {
     this.error = null;
     this.fileControl = new FormControl(this.photo, [
@@ -42,6 +52,18 @@ export class RegisterComponent implements OnInit {
    }
 
 	ngOnInit(): void {
+    this.fileControl.valueChanges.subscribe((files: any) => {
+      console.log(files);
+      //this.photo=files
+      this.postService.uploadPhoto(files).subscribe(
+        (data:any) => {
+          this.photoUrl=data.url;
+          // do something, if upload success
+          console.log('it work')
+          }
+
+        );
+    })
 	}
 
   submit(): void {
@@ -50,7 +72,8 @@ export class RegisterComponent implements OnInit {
 				this.form.controls.email.value,
 				this.form.controls.password.value,
 				this.form.controls.firstname.value,
-				this.form.controls.lastname.value
+				this.form.controls.lastname.value,
+        this.photoUrl
 			).subscribe(
 				(success) => this.router.navigate(['/auth']),
 				(err) => this.error = 'Email invalid'

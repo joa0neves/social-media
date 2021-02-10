@@ -29,7 +29,7 @@ export class NewPostComponent implements OnInit {
 		title: ['', Validators.required]
 	});
   photo: File | null = null;
-  //fileToUpload!: File = null;
+
 	loading = false;
 	submitted = false;
   photoUrl:string='';
@@ -37,8 +37,7 @@ export class NewPostComponent implements OnInit {
 	constructor(
     public dialogRef: MatDialogRef<NewPostComponent>,
 		private formBuilder: FormBuilder,
-		private postService: PostService,
-		private userService: UserService
+		private postService: PostService
 	) {
     this.fileControl = new FormControl(this.photo, [
       Validators.required,
@@ -82,6 +81,7 @@ export class NewPostComponent implements OnInit {
 
 	onSubmit() {
     this.uploadFileToActivity();
+    this.dialogRef.close();
 
 	}
 }
