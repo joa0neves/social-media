@@ -17,6 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FeedCardModule } from '../../components/feed-card/feed-card.module';
 import { HeaderModule } from '../../components/header/header.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 @NgModule({
 	imports: [
@@ -33,7 +35,9 @@ import { HeaderModule } from '../../components/header/header.module';
 		FeedCardModule,
 		MatMenuModule,
 		MatDividerModule,
-		HeaderModule
+		HeaderModule,
+    MatDialogModule,
+    NgxMatFileInputModule
 	],
 	declarations: [
 		HomeComponent,

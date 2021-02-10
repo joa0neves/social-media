@@ -22,8 +22,8 @@ export class AuthService {
 		);
 	}
 
-	register(email: string, password: string, firstname: string, lastname: string) {
-		return this.http.post('http://localhost:4000/user/new', { email, password, firstname, lastname });
+	register(email: string, password: string, firstname: string, lastname: string,photoUrl:string) {
+		return this.http.post('http://localhost:4000/user/new', { email, password, firstname, lastname, photoUrl:photoUrl });
 	}
 
 	logout(): void {

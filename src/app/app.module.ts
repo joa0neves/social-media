@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 @NgModule({
 	declarations: [
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 			}
 		}),
 		BrowserAnimationsModule,
+    NgxMatFileInputModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
