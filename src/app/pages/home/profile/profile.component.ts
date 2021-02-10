@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
 	user: User = {};
 	show = true;
 	posts = posts;
+	loaded = false;
 
 	constructor(
 		private postService: PostService,
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
 		this._id = this.router.url.split('/')[2];
 		this.userService.currentUser.subscribe(
 			(user) => {
+				this.user._id = user._id;
 				if (this._id === user._id) {
 					if (user.picture === '') {
 						this.user.picture = 'https://pbs.twimg.com/media/EAmr-PAWsAEoiWR?format=jpg&name=900x900';
@@ -47,6 +49,14 @@ export class ProfileComponent implements OnInit {
 		);
 	}
 
+	isPostLiked(post: Post): boolean {
+		if (this.loaded) {
+			const lol = post.likes.find((like) => this.user._id === like);
+			return (lol !== undefined) ? true : false;
+		}
+		return false;
+	}
+
 	getUser(id: string): void {
 		this.userService.getUser(id)
 			.subscribe(
@@ -60,7 +70,6 @@ export class ProfileComponent implements OnInit {
 					this.user.firstname = this.user.firstname[0].toUpperCase() + this.user.firstname.slice(1);
 					this.user.lastname = user.lastname || '';
 					this.user.lastname = this.user.lastname[0].toUpperCase() + this.user.lastname.slice(1);
-					this.getCurrentUserPosts();
 				},
 				(error) => {
 					console.log('loading posts failed');
@@ -73,6 +82,7 @@ export class ProfileComponent implements OnInit {
 				(data) => {
 					if (data.length > 0) {
 						this.posts = data;
+						this.loaded = true;
 					}
 				},
 				(error) => {
@@ -86,11 +96,30 @@ export class ProfileComponent implements OnInit {
 				(data) => {
 					if (data.length > 0) {
 						this.posts = data;
+						this.loaded = true;
 					}
 				},
 				(error) => {
 					console.log('loading posts failed');
 				});
+	}
+
+	handleLike(postId: string): void {
+		this.postService.likePost(postId).subscribe(
+			(data) => {
+				const idx = this.posts.findIndex(post => post._id === data._id);
+				this.posts[idx] = data;
+			},
+			(error) => {
+				this.postService.dislikePost(postId).subscribe(
+					(data) => {
+						const idx = this.posts.findIndex(post => post._id === data._id);
+						this.posts[idx] = data;
+					},
+					(err) => console.log(err)
+				);
+			}
+		);
 	}
 
 	delete(post: Post): void {
