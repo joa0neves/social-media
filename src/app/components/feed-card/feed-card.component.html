@@ -3,7 +3,7 @@
 	<mat-card-subtitle>
 		by <a [routerLink]="['/profile', postAuthor._id]">{{ postAuthor.firstname }} {{ postAuthor.lastname }}</a>
 	</mat-card-subtitle>
-	<img mat-card-image src="{{ post.photoUrl }}">
+	<img class="img" src="{{ post.photoUrl }}">
 	<mat-card-content>
 		<button mat-icon-button color="warn" type="button" (click)="handleLike(post._id)">
 			<mat-icon>{{postIsLiked ? 'favorite' : 'favorite_border'}}</mat-icon>

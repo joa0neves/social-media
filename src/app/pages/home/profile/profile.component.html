@@ -14,12 +14,14 @@
 			<mat-card *ngFor="let post of posts">
 				<mat-card-content ngClass="post-card-content">
 					<img mat-card-image src={{post.photoUrl}} alt={{post.title}}>
-					<div style="display: flex; justify-content: space-between">
-						<h3 style="margin-top: 12px;">{{post.title}}</h3>
-						<button mat-icon-button color="warn" type="button" (click)="handleLike(post._id)">
-							<mat-icon>{{isPostLiked(post) ? 'favorite' : 'favorite_border'}}</mat-icon>
-						</button>
-						<span>{{post.likes.length}}</span>
+					<h3 style="margin-top: 12px;">{{post.title}}</h3>
+					<div class="buttons-da-cena">
+						<div>
+							<button mat-icon-button color="warn" type="button" (click)="handleLike(post._id)">
+								<mat-icon>{{isPostLiked(post) ? 'favorite' : 'favorite_border'}}</mat-icon>
+							</button>
+							<span>{{post.likes.length}}</span>
+						</div>
 						<div *ngIf="show">
 							<button (click)='delete(post)' mat-icon-button color="disabled" aria-label="Delete">
 								<mat-icon>delete</mat-icon>

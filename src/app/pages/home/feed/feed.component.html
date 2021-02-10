@@ -1,10 +1,10 @@
-<div class="feed-cards">
+<div class="container">
 	<h1 class="mat-display-3">Feed</h1>
-	<app-feed-card *ngFor="let post of posts"
-		[post]="post"
-		[user]="curUser">
-	</app-feed-card>
+	<div class="feed-cards">
+		<app-feed-card *ngFor="let post of posts" [post]="post" [user]="curUser">
+		</app-feed-card>
+	</div>
+	<button mat-fab color="primary" aria-label="New Post" class="fab-new-post" (click)="addPost()">
+		<mat-icon>add</mat-icon>
+	</button>
 </div>
-<button mat-fab color="primary" aria-label="New Post" class="fab-new-post" (click)="addPost()">
-	<mat-icon>add</mat-icon>
-</button>

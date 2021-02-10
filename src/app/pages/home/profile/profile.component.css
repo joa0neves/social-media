@@ -32,6 +32,12 @@
 	max-width: fit-content;
 }
 
+.buttons-da-cena {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .title {
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
