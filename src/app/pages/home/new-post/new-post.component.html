@@ -11,11 +11,10 @@
           </ngx-mat-file-input>
        </mat-form-field>
       </p>
-
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button type="submit" mat-raised-button [disabled]="postForm.invalid || fileControl.invalid" mat-button>Upload</button>
+    <button type="submit" mat-raised-button [disabled]="postForm.invalid" mat-button>Upload</button>
   </div>
 </form>
 
