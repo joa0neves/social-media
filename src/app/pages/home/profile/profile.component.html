@@ -9,19 +9,19 @@
 				</div>
 			</mat-card-content>
 		</mat-card>
-		<div class="post-grid">
+		<h1 class="mat-display-3 title">Posts</h1>
+		<div class="post-grid" *ngIf="loaded">
 			<mat-card *ngFor="let post of posts">
 				<mat-card-content ngClass="post-card-content">
 					<img mat-card-image src={{post.photoUrl}} alt={{post.title}}>
-					<div style="display: flex">
+					<div style="display: flex; justify-content: space-between">
 						<h3 style="margin-top: 12px;">{{post.title}}</h3>
-						<mat-divider [vertical]="true" style="padding-right: 5px; padding-left: 5px;"></mat-divider>
-						<h2 style="color: #F44336; margin-top: 12px; padding-left:5px">{{post.likes.length}}</h2>
-						<span class="material-icons"
-							style="color: #F44336; margin-top: 16px; padding-left: 5px">favorite</span>
-						<mat-divider [vertical]="true" style="padding-right: 5px; padding-left: 5px;"></mat-divider>
+						<button mat-icon-button color="warn" type="button" (click)="handleLike(post._id)">
+							<mat-icon>{{isPostLiked(post) ? 'favorite' : 'favorite_border'}}</mat-icon>
+						</button>
+						<span>{{post.likes.length}}</span>
 						<div *ngIf="show">
-							<button (click)='delete(post)' mat-fab color="disabled" aria-label="Delete">
+							<button (click)='delete(post)' mat-icon-button color="disabled" aria-label="Delete">
 								<mat-icon>delete</mat-icon>
 							</button>
 						</div>

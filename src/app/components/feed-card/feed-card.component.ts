@@ -11,6 +11,7 @@ import { User } from 'src/app/types/user';
 })
 export class FeedCardComponent implements OnInit {
 	@Input() post!: Post;
+	@Input() user!: User;
 	postAuthor!: User;
 	postIsLiked = false;
 	loaded = false;
@@ -26,7 +27,7 @@ export class FeedCardComponent implements OnInit {
 				this.postAuthor = data;
 				this.postService.getPostLikes(this.post._id).subscribe(
 					(users: User[]) => {
-						const foundUser = users.find(user => user._id === this.postAuthor._id);
+						const foundUser = users.find(user => user._id === this.user._id);
 						if (foundUser) { this.postIsLiked = true; }
 						this.loaded = true;
 					}
